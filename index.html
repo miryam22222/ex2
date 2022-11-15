@@ -2,52 +2,98 @@
 
 <head>
   <meta charset=utf-8>
-  <title>My Data App</title>
+  <title>Nobel-Prize Catalog</title>
   <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
   <div id="container">
     <div id="main">
-      <h1 class="content">My Data App</h1>
+      <h1 class="content">Nobel-Prize Catalog</h1>
 
-      <div id="app" class="row">
-
-        <!-- Start example showing the css layout -->
-        <div class="item">
+      <div class="row">
+        <div class="item meta">
           <div class="content">
-            <h2>Example Heading</h2>
-            <p>Example text.</p>
+            <p>This is an app to search for nobel prize winners and some information baout them :)</p>
           </div>
         </div>
-
-        <div class="item">
-          <div class="content">
-            <h2>Example Heading</h2>
-            <p>Example text.</p>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="content">
-            <h2>Example Heading</h2>
-            <p>Example text.</p>
-          </div>
-        </div>
-        <!-- End example showing the css layout -->
-
-        <template id="item-template">
-          <div class="item">
-            <div class="content">
-              <h2>Example Heading</h2>
-              <p>Example text.</p>
+        <div class="item meta">
+          <div class="row">
+            <div class="item meta">
+              <div class="content">
+                <p>Sort by</p>
+                <select id="data-sort">
+                  <option value="name">name</option>
+                  <option value="age">age of winning</option>
+                  <option value="year">year</option>
+                  <option value="curr worth">current prize worth</option>
+                </select>
+              </div>
+            </div>
+            <div class="item meta">
+              <div class="content">
+                <p>Filter by</p>
+                <select id="data-filter">
+                  <option value="---">---</option>
+                  <option value="Chemistry">chemistry</option>
+                  <option value="Literature">literature</option>
+                  <option value="Peace">peace</option>
+                  <option value="Physics">physics</option>
+                  <option value="Physiology or Medicine">physiology or medicine</option>
+                  <option value="Economic Sciences">economic sciences</option>
+                  
+                </select>
+              </div>
             </div>
           </div>
-        </template>
+        </div>
+      </div>
 
+      <div id="app" class="row">
+        <p>loading</p>
       </div>
     </div>
-  </div>
+
+    <template id="info-slide-template">
+      <div class="item">
+        <div class="content info-slide">
+          <div class="row">
+            <div class="item data-title">
+              <h2 class="laureate-name"></h2>
+            </div>
+            <div class="item gender-image">
+              <img class="gender-image" src="" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="item data-subtitle">
+              <h3 class="year"></h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="item data-subsubtitle">
+              <h4 class="category"></h4>
+            </div>
+          </div>
+          <div>
+            <p></p>
+          </div>
+          <!-- <table>
+            <thead>
+              <tr>
+                <td>Born in</td>
+                <td>Won at the age of</td>
+                <td>Reason for winning</td>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table> -->
+        </div>
+      </div>
+    </template>
+
   <script type="module" src="index.js"></script>
 </body>
 
