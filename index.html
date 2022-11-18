@@ -10,48 +10,53 @@
   <div id="container">
     <div id="main">
       <h1 class="content">Nobel-Prize Catalog</h1>
-
       <div class="row">
         <div class="item meta">
           <div class="content">
-            <p>This is an app to search for nobel prize winners and some information baout them :)</p>
+            <p>This is an app to search for nobel prize laureates and some information about them :)</p>
           </div>
         </div>
         <div class="item meta">
           <div class="row">
             <div class="item meta">
               <div class="content">
-                <p>Sort by</p>
-                <select id="data-sort">
-                  <option value="name">name</option>
-                  <option value="year">year</option>
-                  <option value="curr worth">current prize worth</option>
-                  <option value="country">birth country</option>
-                </select>
+                <div class="selection-box">
+                  <p>Sort by</p>
+                  <select id="data-sort">
+                    <option value="name">name</option>
+                    <option value="year">year</option>
+                    <option value="curr worth">current prize worth</option>
+                    <option value="country">birth country</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="item meta">
               <div class="content">
-                <p>Filter by category</p>
-                <select id="category-filter">
-                  <option value="---">---</option>
-                  <option value="Chemistry">chemistry</option>
-                  <option value="Literature">literature</option>
-                  <option value="Peace">peace</option>
-                  <option value="Physics">physics</option>
-                  <option value="Physiology or Medicine">physiology or medicine</option>
-                  <option value="Economic Sciences">economic sciences</option>
-                </select>
+                <div class="selection-box">
+                  <p>Filter by category</p>
+                  <select id="category-filter">
+                    <option value="---">---</option>
+                    <option value="Chemistry">chemistry</option>
+                    <option value="Literature">literature</option>
+                    <option value="Peace">peace</option>
+                    <option value="Physics">physics</option>
+                    <option value="Physiology or Medicine">physiology or medicine</option>
+                    <option value="Economic Sciences">economic sciences</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="item meta">
               <div class="content">
-                <p>Filter by gender</p>
-                <select id="gender-filter">
-                  <option value="---">---</option>
-                  <option value="male">male</option>
-                  <option value="female">female</option>
-                </select>
+                <div class="selection-box">
+                  <p>Filter by gender</p>
+                  <select id="gender-filter">
+                    <option value="---">---</option>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -72,6 +77,8 @@
                 <div class="item data-title">
                   <h2 class="laureate-name"></h2>
                 </div>
+              </div>
+              <div class="row">
                 <div class="item gender-image">
                   <img class="gender-image" src="" />
                 </div>
@@ -81,22 +88,13 @@
                   <h3 class="year"></h3>
                 </div>
               </div>
-              <!-- <table>
-                <thead>
-                  <tr>
-                    <td>Born in</td>
-                    <td>Reason for winning</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                </tbody>
-              </table> -->
             </div>
             <div class="flip-card-back">
               <div class="row">
                 <div class="item data-subsubtitle">
-                  <h4 class="category">category: </h4>
+                  <h4 class="category"></h4>
+                  <br>
+                  <p></p>
                 </div>
               </div>
             </div>

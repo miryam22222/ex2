@@ -138,6 +138,7 @@ function extractData(rawData) {
     category : item.nobelPrizes[0].category.en,
     year : item.nobelPrizes[0].awardYear,
     worth : item.nobelPrizes[0].prizeAmountAdjusted,
+    reason : item.nobelPrizes[0].motivation.en
     })
   }
   return semplifiedData;
@@ -173,12 +174,13 @@ async function renderUI(data) {
     const gender = recordClone.querySelector("img");
     const year = recordClone.querySelector("h3");
     const category = recordClone.querySelector("h4");
-    // const category = recordClone.querySelector("")
+    const reason = recordClone.querySelector("p");
 
     laureateName.innerHTML = laureate.fullName;
     gender.src = `${laureate.gender}.png`;
     year.innerHTML = laureate.year;
     category.innerHTML = laureate.category;
+    reason.innerHTML = laureate.reason;
 
     app.appendChild(recordClone);
   }
