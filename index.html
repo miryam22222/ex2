@@ -24,16 +24,16 @@
                 <p>Sort by</p>
                 <select id="data-sort">
                   <option value="name">name</option>
-                  <option value="age">age of winning</option>
                   <option value="year">year</option>
                   <option value="curr worth">current prize worth</option>
+                  <option value="country">birth country</option>
                 </select>
               </div>
             </div>
             <div class="item meta">
               <div class="content">
-                <p>Filter by</p>
-                <select id="data-filter">
+                <p>Filter by category</p>
+                <select id="category-filter">
                   <option value="---">---</option>
                   <option value="Chemistry">chemistry</option>
                   <option value="Literature">literature</option>
@@ -41,7 +41,16 @@
                   <option value="Physics">physics</option>
                   <option value="Physiology or Medicine">physiology or medicine</option>
                   <option value="Economic Sciences">economic sciences</option>
-                  
+                </select>
+              </div>
+            </div>
+            <div class="item meta">
+              <div class="content">
+                <p>Filter by gender</p>
+                <select id="gender-filter">
+                  <option value="---">---</option>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
                 </select>
               </div>
             </div>
@@ -54,42 +63,44 @@
       </div>
     </div>
 
-    <template id="info-slide-template">
+    <template id="card-template">
       <div class="item">
-        <div class="content info-slide">
-          <div class="row">
-            <div class="item data-title">
-              <h2 class="laureate-name"></h2>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="row">
+                <div class="item data-title">
+                  <h2 class="laureate-name"></h2>
+                </div>
+                <div class="item gender-image">
+                  <img class="gender-image" src="" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="item data-subtitle">
+                  <h3 class="year"></h3>
+                </div>
+              </div>
+              <!-- <table>
+                <thead>
+                  <tr>
+                    <td>Born in</td>
+                    <td>Reason for winning</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table> -->
             </div>
-            <div class="item gender-image">
-              <img class="gender-image" src="" />
+            <div class="flip-card-back">
+              <div class="row">
+                <div class="item data-subsubtitle">
+                  <h4 class="category">category: </h4>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="item data-subtitle">
-              <h3 class="year"></h3>
-            </div>
-          </div>
-          <div class="row">
-            <div class="item data-subsubtitle">
-              <h4 class="category"></h4>
-            </div>
-          </div>
-          <div>
-            <p></p>
-          </div>
-          <!-- <table>
-            <thead>
-              <tr>
-                <td>Born in</td>
-                <td>Won at the age of</td>
-                <td>Reason for winning</td>
-              </tr>
-            </thead>
-            <tbody>
-              
-            </tbody>
-          </table> -->
         </div>
       </div>
     </template>

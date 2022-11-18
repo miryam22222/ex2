@@ -7,7 +7,8 @@
 const API_BASE = 'https://api.nobelprize.org/2.1';
 const API_LAUREATES = `${API_BASE}/laureates`;
 let currSort = "name";
-let currFilter = "---";
+let currCategoryFilter = "---";
+let currGenderFilter = "---"; //create another filter!
 let wholeData = null;
 let currData = null;
 
@@ -31,6 +32,9 @@ function sortData(data, key) {
     if (key === "name") {
       return a.fullName > b.fullName ? 1 : -1 ;
     } 
+    else if(key === "country") {
+      return a.birthCountry > b.birthCountry ? 1 : -1;
+    }
     else if (key === "age") {
       return a.age > b.age ? 1 : -1 ;
     }
@@ -43,28 +47,57 @@ function sortData(data, key) {
   })
 }
 
-const dataFilter = document.getElementById("data-filter");
-
-dataFilter.addEventListener("change", async (event) => {
-  console.log("Data Filter Change");
-  console.log(event.target.value);
-
-  currFilter = event.target.value;
-
+// runs the code that activates all different kinds of filters.
+// if there is a new filter in the code, *this is where* we make sure that it runs.
+function activateAllFilters() {
   const data = wholeData;
   sortData(data, currSort);
-  const filteredData = filterData(data, currFilter);
+  const filteredData = filterGenderData(filterCategoryData(data, currCategoryFilter), currGenderFilter);
   currData = filteredData;
-  await renderUI(filteredData);
+  return filteredData;
+}
+
+const categoryFilter = document.getElementById("category-filter");
+
+categoryFilter.addEventListener("change", async (event) => {
+  console.log("Category Filter Change");
+  console.log(event.target.value);
+
+  currCategoryFilter = event.target.value;
+  await renderUI(activateAllFilters());
 })
 
-function filterData(data, key) {
+const genderFilter = document.getElementById("gender-filter");
+
+genderFilter.addEventListener("change", async (event) => {
+  console.log("Gender filter change");
+  console.log(event.target.value);
+
+  currGenderFilter = event.target.value;
+  await renderUI(activateAllFilters());
+})
+
+function filterCategoryData(data, key) {
+  console.log("filter data just in");
   data = data.filter((laureate) => {
     if (key === "---") {
       return laureate;
     }
     else {
       return key === laureate.category;
+    }
+  });
+  return data;
+}
+
+function filterGenderData(data, key) {
+  console.log("filter data just in");
+  data = data.filter((laureate) => {
+    if (key === "---") {
+      return laureate;
+    }
+    else {
+      return key === laureate.gender;
     }
   });
   return data;
@@ -85,45 +118,32 @@ async function queryEndpoint(endpoint) {
   return data;
 }
 
-// change function to calculate actual age based on the date the award was given
-function ageOfWinning(birthDateString, winningDateString) {
-  const birthDate = new Date(birthDateString);
-  const winningDate = new Date(winningDateString);
-  const diff = winningDate - birthDate;
-  const age = new Date(winningDate - birthDate).getFullYear() - 1970;
-  console.log("age");
-  console.log(diff);
-  console.log("DONE. age");
-  return age;
-}
-
-function extractData(rawData) {
-  const semplifiedData = [];
-
-  for (const item of rawData) {
-    let country = null;
+function checkCountry(item) {
+  let country = null;
      try {
       country = item.birth.place.country.en;
      } catch(error) {
       country = "unknown";
      }
+     return country
+}
 
-     semplifiedData.push({
-      fullName : item.fullName.en,
-      gender : item.gender,
-      birthCountry : country,
-      category : item.nobelPrizes[0].category.en,
-      year : item.nobelPrizes[0].awardYear,
-      age : ageOfWinning(item.birth.date, item.nobelPrizes[0].dateAwarded),
-      worth : item.nobelPrizes[0].prizeAmountAdjusted
-     })
+function extractData(rawData) {
+  const semplifiedData = [];
+  for (const item of rawData) {
+    semplifiedData.push({
+    fullName : item.fullName.en,
+    gender : item.gender,
+    birthCountry : checkCountry(item),
+    category : item.nobelPrizes[0].category.en,
+    year : item.nobelPrizes[0].awardYear,
+    worth : item.nobelPrizes[0].prizeAmountAdjusted,
+    })
   }
   return semplifiedData;
 }
 
 async function getData() {
-  // write you logic for getting the data from the API here
-  // return your data from this function
   const laureatesData = await queryEndpoint(API_LAUREATES);
   const semplifiedData = extractData(laureatesData.laureates);
   wholeData = semplifiedData;
@@ -143,16 +163,17 @@ async function renderUI(data) {
   console.log("DONE. data");
   clearUI();
 
-  const slideTemplate = document.getElementById("info-slide-template"); 
+  const cardTemplate = document.getElementById("card-template"); 
 
   for (const laureate of data) {
 
-    const recordClone = slideTemplate.content.firstElementChild.cloneNode(true);
+    const recordClone = cardTemplate.content.firstElementChild.cloneNode(true);
 
     const laureateName = recordClone.querySelector("h2");
     const gender = recordClone.querySelector("img");
     const year = recordClone.querySelector("h3");
     const category = recordClone.querySelector("h4");
+    // const category = recordClone.querySelector("")
 
     laureateName.innerHTML = laureate.fullName;
     gender.src = `${laureate.gender}.png`;
@@ -161,15 +182,6 @@ async function renderUI(data) {
 
     app.appendChild(recordClone);
   }
-
-
-  // you have your data! add logic here to render it to the UI
-  // notice in the HTML file we call render();
-  // const dummyItemElement = Object.assign(document.createElement("div"), { className: "item" })
-  // const dummyContentElement = Object.assign(document.createElement("div"), { className: "content" })
-  // dummyContentElement.innerHTML = "hey";
-  // dummyItemElement.appendChild(dummyContentElement);
-  // app.appendChild(dummyItemElement);
 }
 
 const data = await getData();
