@@ -44,7 +44,8 @@ h2 {
 
 
 .flip-card {
-  background-color: rgba(120, 120, 240, 0.779);
+  background-color: #FCF6F5FF;
+  color: #2d2c2c;
   border-radius: 25px;  
   width: 300px;
   height: 250px;
@@ -81,7 +82,7 @@ h2 {
 }
 
 .flip-card-back {
-  color: white;
+  color: #2d2c2c;
   transform: rotateY(180deg);
 }
 
@@ -124,7 +125,7 @@ h2 {
 /* !!!!!!!!!!!!!!!!!!!! */
 
 body {
-  background-color: #f5f5f5;
-  color: #2d2c2c;
+  background-color: #990011FF;
+  color: #FCF6F5FF;
   font-family: Cursive;
 }
