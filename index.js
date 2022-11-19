@@ -35,14 +35,8 @@ function sortData(data, key) {
     else if(key === "country") {
       return a.birthCountry > b.birthCountry ? 1 : -1;
     }
-    else if (key === "age") {
-      return a.age > b.age ? 1 : -1 ;
-    }
     else if (key === "year") {
       return parseInt(a.year) > parseInt(b.year) ? 1 : -1 ;
-    }
-    else if (key === "curr worth") {
-      return parseInt(a.worth) > parseInt(b.worth) ? 1 : -1 ;
     }
   })
 }
@@ -122,6 +116,9 @@ function checkCountry(item) {
   let country = null;
      try {
       country = item.birth.place.country.en;
+      if (country === "British Protectorate of Palestine" | country === "British Mandate of Palestine") {
+        country = "Israel";
+      }
      } catch(error) {
       country = "unknown";
      }
@@ -173,12 +170,14 @@ async function renderUI(data) {
     const laureateName = recordClone.querySelector("h2");
     const gender = recordClone.querySelector("img");
     const year = recordClone.querySelector("h3");
+    const country = recordClone.querySelector("h5");
     const category = recordClone.querySelector("h4");
     const reason = recordClone.querySelector("p");
 
     laureateName.innerHTML = laureate.fullName;
     gender.src = `${laureate.gender}.png`;
     year.innerHTML = laureate.year;
+    country.innerHTML = laureate.birthCountry;
     category.innerHTML = laureate.category;
     reason.innerHTML = laureate.reason;
 

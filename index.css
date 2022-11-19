@@ -26,8 +26,7 @@ h2 {
   flex-basis: 100%;
 
   /* design helper */
-  border: 1px dotted orangered;
-  /* background-color: cadetblue; */
+  /* border: 1px dotted orangered; */
 }
 
 .content {
@@ -39,7 +38,7 @@ h2 {
   padding: 10px;
 
   /* design helper */
-  border: 1px dotted blueviolet;
+  /* border: 1px dotted blueviolet; */
 }
 
 
@@ -51,8 +50,6 @@ h2 {
   height: 250px;
   perspective: 1000px;
   margin: 10px;
-
-  border: 1px dotted white;
 }
 
 /* check what it affects */
@@ -64,9 +61,6 @@ h2 {
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
-  border: 1px dotted black;
 }
 
 .flip-card:hover .flip-card-inner {
@@ -84,6 +78,10 @@ h2 {
 .flip-card-back {
   color: #2d2c2c;
   transform: rotateY(180deg);
+}
+
+.prolog p{
+  text-align: center;
 }
 
 .item.meta {
@@ -125,7 +123,7 @@ h2 {
 /* !!!!!!!!!!!!!!!!!!!! */
 
 body {
-  background-color: #990011FF;
+  background-color: rgb(229, 54, 75);
   color: #FCF6F5FF;
   font-family: Cursive;
 }
